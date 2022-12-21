@@ -147,6 +147,10 @@ namespace Exercise_5_Algoritma_dan_Struktur_Data
                             break;
                     }
                 }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Check for the values entered");
+                }
             }
         }
     }
