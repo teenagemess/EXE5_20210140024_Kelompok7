@@ -6,101 +6,81 @@ using System.Threading.Tasks;
 
 namespace Exercise_5_Algoritma_dan_Struktur_Data
 {
+    class Node
+    {
+        public char info;
+        public Node next;
+        public Node(char i, Node n)
+        {
+            info = i;
+            next = n;
+        }
+    }
+   
     class Queues
     {
-        int RAYNANDA, AQIYAS, max = 5;
-        int[] queue_array = new int[5];
+        Node RAYNANDA;
+        Node AQIYAS;
+
         public Queues()
         {
             
-            RAYNANDA = -1;
-            AQIYAS = -1;
+            RAYNANDA = null;
+            AQIYAS = null;
         }
-        public void insert(int element)
+        public void insert(char element)
         {
-            if ((RAYNANDA == 0 && AQIYAS == max -1) || (RAYNANDA == AQIYAS + 1))
+            Node el;
+            el = new Node(element, null);
+
+
+            if (RAYNANDA == null)
             {
-                Console.WriteLine("\nQueue overflow\n");
-                return;
-            }
-            if (RAYNANDA == -1)
-            {
-                RAYNANDA = 0;
-                AQIYAS = 0;
+                RAYNANDA = el;
             }
             else
             {
-                if (AQIYAS == max - 1)
-                    AQIYAS = 0;
-                else
-                    AQIYAS = AQIYAS + 1;
+                AQIYAS.next = el;
             }
-            queue_array[AQIYAS] = element;
+            AQIYAS = el;
         }
-        public void remove()
+        public int delete()
         {
-            //Checks queue is empty
-            if (RAYNANDA == -1)
-            {
-                Console.WriteLine("Queue underflow\n");
-                return ;
-            }
-            Console.WriteLine("\nThe element deleted from the queue is: " + queue_array[RAYNANDA] + "\n");
+            Node tmp;
+            Console.WriteLine("\nThe element delete from the queue is " + RAYNANDA + "\n");
 
-                //Checks queue has one element
-                if (RAYNANDA == AQIYAS)
-                {
-                    RAYNANDA = -1;
-                    AQIYAS = -1;
-                }
-                else
-                {
-                    if (RAYNANDA == max - 1)
-                        RAYNANDA = 0;
-                    else
-                        RAYNANDA = RAYNANDA + 1;
-                }
+            tmp = RAYNANDA;
+            RAYNANDA = RAYNANDA.next;
+
+            if (RAYNANDA == null)
+            {
+                AQIYAS = null;
+            }
+            return tmp.info;
             
         }
         public void display()
         {
-            int RAYNANDA_position = RAYNANDA;
-            int AQIYAS_position = AQIYAS;
-            //checks queue empty
-            if (AQIYAS == -1)
+            Node RAYNANDA_position;
+            RAYNANDA_position = RAYNANDA;
+
+            if ((RAYNANDA_position == null) && (AQIYAS == null))
             {
-                Console.WriteLine("Queue is empty\n");
+                Console.WriteLine("Queue is empty");
                 return;
             }
-            Console.WriteLine("\nElements in the queue are................\n");
-            if (RAYNANDA_position <= AQIYAS_position)
+            Console.WriteLine("\nElements in the queue are...\n");
+
+            while (RAYNANDA_position != AQIYAS)
             {
-                //traverse queue until the last element
-                while (RAYNANDA_position <= AQIYAS_position)
-                {
-                    Console.Write(queue_array[RAYNANDA_position] + "   ");
-                    RAYNANDA_position++;
-                }
-                Console.WriteLine();
+                Console.WriteLine(RAYNANDA_position.info);
+                RAYNANDA_position = RAYNANDA_position.next;
             }
-            else
+            if (RAYNANDA_position == AQIYAS)
             {
-                //traverse queue until the last position array
-                while (RAYNANDA_position <= max - 1)
-                {
-                    Console.WriteLine(queue_array[RAYNANDA_position] + "   ");
-                    RAYNANDA_position++;
-                }
-                //set raynanda position to the frist element of array
-                RAYNANDA_position = 0;
-                //traverse array till last element present in the queue
-                while(RAYNANDA_position <= AQIYAS_position)
-                {
-                    Console.Write(queue_array[RAYNANDA_position] + "   ");
-                    RAYNANDA_position++;
-                }
-                Console.WriteLine();
+                Console.WriteLine(RAYNANDA_position.info);
             }
+            Console.WriteLine();
         }
         static void Main(string[] args)
         {
@@ -122,15 +102,15 @@ namespace Exercise_5_Algoritma_dan_Struktur_Data
                     {
                         case '1':
                             {
-                                Console.Write("Enter a number: ");
-                                int num = Convert.ToInt32(System.Console.ReadLine());
+                                Console.Write("Enter Character: ");
+                                char c = Convert.ToChar(Console.ReadLine());
                                 Console.WriteLine();
-                                q.insert(num);
+                                q.insert(c);
                             }
                             break;
                         case '2':
                             {
-                                q.remove();
+                                q.delete();
                             }
                             break ;
                         case '3':
