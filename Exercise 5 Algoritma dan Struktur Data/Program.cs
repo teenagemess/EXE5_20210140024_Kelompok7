@@ -16,5 +16,26 @@ namespace Exercise_5_Algoritma_dan_Struktur_Data
             RAYNANDA = -1;
             AQIYAS = -1;
         }
+        public void insert(int element)
+        {
+            if ((RAYNANDA == 0 && AQIYAS == max -1) || (RAYNANDA == AQIYAS + 1))
+            {
+                Console.WriteLine("\nQueue overflow\n");
+                return;
+            }
+            if (RAYNANDA == -1)
+            {
+                RAYNANDA = 0;
+                AQIYAS = 0;
+            }
+            else
+            {
+                if (AQIYAS == max - 1)
+                    AQIYAS = 0;
+                else
+                    AQIYAS = AQIYAS + 1;
+            }
+            queue_array[AQIYAS] = element;
+        }
     }
 }
