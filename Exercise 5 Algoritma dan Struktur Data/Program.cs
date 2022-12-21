@@ -40,14 +40,13 @@ namespace Exercise_5_Algoritma_dan_Struktur_Data
         public void remove()
         {
             //Checks queue is empty
-            if (AQIYAS == -1)
+            if (RAYNANDA == -1)
             {
                 Console.WriteLine("Queue underflow\n");
                 return ;
             }
             Console.WriteLine("\nThe element deleted from the queue is: " + queue_array[RAYNANDA] + "\n");
-            if (RAYNANDA == AQIYAS)
-            {
+
                 //Checks queue has one element
                 if (RAYNANDA == AQIYAS)
                 {
@@ -61,6 +60,28 @@ namespace Exercise_5_Algoritma_dan_Struktur_Data
                     else
                         RAYNANDA = RAYNANDA + 1;
                 }
+            
+        }
+        public void display()
+        {
+            int RAYNANDA_position = RAYNANDA;
+            int AQIYAS_position = AQIYAS;
+            //checks queue empty
+            if (AQIYAS == -1)
+            {
+                Console.WriteLine("Queue is empty\n");
+                return;
+            }
+            Console.WriteLine("\nElements in the queue are................\n");
+            if (RAYNANDA_position <= AQIYAS_position)
+            {
+                //traverse queue until the last element
+                while (RAYNANDA_position <= AQIYAS_position)
+                {
+                    Console.Write(queue_array[RAYNANDA_position] + "   ");
+                    RAYNANDA_position++;
+                }
+                Console.WriteLine();
             }
         }
     }
