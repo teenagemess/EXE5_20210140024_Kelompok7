@@ -83,6 +83,24 @@ namespace Exercise_5_Algoritma_dan_Struktur_Data
                 }
                 Console.WriteLine();
             }
+            else
+            {
+                //traverse queue until the last position array
+                while (RAYNANDA_position <= max - 1)
+                {
+                    Console.WriteLine(queue_array[RAYNANDA_position] + "   ");
+                    RAYNANDA_position++;
+                }
+                //set raynanda position to the frist element of array
+                RAYNANDA_position = 0;
+                //traverse array till last element present in the queue
+                while(RAYNANDA_position <= AQIYAS_position)
+                {
+                    Console.Write(queue_array[RAYNANDA_position] + "   ");
+                    RAYNANDA_position++;
+                }
+                Console.WriteLine();
+            }
         }
     }
 }
